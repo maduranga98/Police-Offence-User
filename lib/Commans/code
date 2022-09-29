@@ -1,0 +1,703 @@
+// StreamBuilder(
+//         stream: FirebaseFirestore.instance
+//             .collection('Data')
+//             .doc(uid)
+//             .collection('fine')
+//             .where('mode', isEqualTo: 'notpaid')
+//             .snapshots(),
+//         // builder: ((context, snapshot) {
+//         //   if (snapshot.connectionState == ConnectionState.waiting) {
+//         //     return CircularProgressIndicator();
+//         //   }
+//         //   var datetime = DateTime.now();
+
+//         //   var ds = snapshot.data!.docs;
+//         //   final now = DateTime.now();
+//         //   for (int i = 0; i < ds.length; i++) {
+//         //     final expirationDate = ds[i]['expired'].toDate();
+//         //     final bool isExpired = expirationDate.isBefore(now);
+//         //     print(isExpired);
+//         //     //not expired
+//         //     if (isExpired == false) {
+//         //       return Card(
+//         //         color: Colors.green,
+//         //         child: Text(ds[i]['description']),
+//         //       );
+//         //     } else {
+//         //       final Timestamp timestamp1 = ds[i]['expired'] as Timestamp;
+//         //       final DateTime dateTime1 = timestamp1.toDate();
+//         //       final nextExpireDate = dateTime1.add(Duration(days: 7));
+//         //       final expiredMinutes = nextExpireDate.difference(now).inDays;
+
+//         //       if (expiredMinutes == -1) {
+//         //         var amount = int.parse(ds[i]['amount']);
+//         //         var withTax = amount + 1000;
+//         //         var fineWithTax = withTax.toString();
+//         //         print(expiredMinutes);
+//         //         print(fineWithTax);
+//         //         FirebaseFirestore.instance
+//         //             .collection('Data')
+//         //             .doc(uid)
+//         //             .collection('fine')
+//         //             .doc(ds[i].id)
+//         //             .update({
+//         //           'status': 1,
+//         //           'paybefore': dateTime1.add(const Duration(days: 7)),
+//         //           // 'amount': fineWithTax.toString(),
+//         //           // 'count':
+//         //         });
+//         //       }
+
+//         //       return Card(
+//         //         child: Text(ds[i]['amount']),
+//         //       );
+//         //       // final Timestamp timestamp = e['date'] as Timestamp;
+//         //       // final DateTime dateTime = timestamp.toDate();
+//         //       // final dateString = DateFormat("dd MMM, yyyy").format(dateTime);
+
+//         //       // final Timestamp timestamp1 = e['expired'] as Timestamp;
+//         //       // final DateTime dateTime1 = timestamp1.toDate();
+//         //       // final dateString1 =
+//         //       //     DateFormat("dd MMM, yyyy").format(dateTime1);
+//         //       // print(datetime);
+//         //       // final now = DateTime.now();
+//         //       // final expirationDate = e['expired'].toDate();
+//         //       // final bool isExpired = expirationDate.isBefore(now);
+//         //       // print(isExpired);
+//         //       /*
+//         //        if 14 day expired ? add tax, set status 1 , add next paying date
+//         //        if 7 day expired ? add another tax, status 2 , add next paying date
+//         //        else open youtube video link
+//         //        */
+//         //       // first 14 days expired
+//         //       // if (ds[i]['status'] == 1) {
+//         //       //   var amount = double.parse(ds[i]['amount']);
+//         //       //   var withTax = amount + 0.5;
+//         //       //   var fineWithTax = withTax.toString();
+//         //       //   // expirationDate.cancel();
+//         //       //   print(fineWithTax);
+//         //       //   FirebaseFirestore.instance
+//         //       //       .collection('Data')
+//         //       //       .doc(uid)
+//         //       //       .collection('fine')
+//         //       //       .doc(ds[i].id)
+//         //       //       .update({
+//         //       //     // 'amount': fineWithTax,
+//         //       //     // 'count':
+//         //       //   });
+//         //       //   // Timer.periodic(Duration(days: 7), )
+//         //       //   return Card(
+//         //       //     color: Colors.yellow,
+//         //       //     child: Text(ds[i]['amount'].toString()),
+//         //       //   );
+//         //       // }
+//         //       // //next 7 day expired
+//         //       // else if (ds[i]['status'] == 2) {
+//         //       // }
+//         //       // //open video link
+//         //       // else {}
+//         //     }
+//         //   }
+//         //   return Card();
+//         // })
+//         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+//           if (!snapshot.hasData) {
+//             return Center(child: CircularProgressIndicator());
+//           } else {
+//             return ListView(
+//               scrollDirection: Axis.vertical,
+//               shrinkWrap: true,
+//               children: snapshot.data!.docs.map((e) {
+//                 return Card();
+//                 // var datetime = DateTime.now();
+//                 // final Timestamp timestamp = e['date'] as Timestamp;
+//                 // final DateTime dateTime = timestamp.toDate();
+//                 // final dateString = DateFormat("dd MMM, yyyy").format(dateTime);
+
+//                 // final Timestamp timestamp1 = e['expired'] as Timestamp;
+//                 // final DateTime dateTime1 = timestamp1.toDate();
+//                 // final dateString1 = DateFormat("dd, MMM").format(dateTime1);
+//                 // // print(datetime);
+//                 // final now = DateTime.now();
+//                 // final expirationDate = e['expired'].toDate();
+
+//                 // final dateString2 = DateFormat("dd,MMM").format(dateTime);
+//                 // print(dateString2);
+
+//                 // final bool isExpired = expirationDate.isBefore(now);
+//                 // print(isExpired);
+//                 // if (isExpired == false) {
+//                 //   return Card(
+//                 //     color: Colors.green,
+//                 //     child: Padding(
+//                 //       padding: const EdgeInsets.all(8.0),
+//                 //       child: Column(
+//                 //         crossAxisAlignment: CrossAxisAlignment.start,
+//                 //         children: [
+//                 //           const Padding(
+//                 //             padding: EdgeInsets.all(8.0),
+//                 //             child: Center(
+//                 //                 child: Text(
+//                 //               "Fine details: ",
+//                 //               style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Colors.white70,
+//                 //                   fontSize: 15.0),
+//                 //             )),
+//                 //           ),
+//                 //           Row(
+//                 //             children: [
+//                 //               const Text(
+//                 //                 "Fine description:",
+//                 //                 style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Colors.white70,
+//                 //                 ),
+//                 //               ),
+//                 //               SizedBox(
+//                 //                 width: 10,
+//                 //               ),
+//                 //               Text(
+//                 //                 e['description'],
+//                 //                 style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Color.fromARGB(239, 62, 0, 231),
+//                 //                 ),
+//                 //               ),
+//                 //             ],
+//                 //           ),
+//                 //           Row(
+//                 //             children: [
+//                 //               Text(
+//                 //                 "Fine amount:",
+//                 //                 style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Colors.white70,
+//                 //                 ),
+//                 //               ),
+//                 //               SizedBox(
+//                 //                 width: 10,
+//                 //               ),
+//                 //               Text(
+//                 //                 e['amount'],
+//                 //                 style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Color.fromARGB(239, 62, 0, 231),
+//                 //                 ),
+//                 //               ),
+//                 //             ],
+//                 //           ),
+//                 //           Row(
+//                 //             children: [
+//                 //               Text(
+//                 //                 "Fine Date:",
+//                 //                 style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Colors.white70,
+//                 //                 ),
+//                 //               ),
+//                 //               SizedBox(
+//                 //                 width: 10,
+//                 //               ),
+//                 //               Text(
+//                 //                 dateString,
+//                 //                 style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Color.fromARGB(239, 62, 0, 231),
+//                 //                 ),
+//                 //               ),
+//                 //             ],
+//                 //           ),
+//                 //           Row(
+//                 //             children: [
+//                 //               Text(
+//                 //                 "Pay before:",
+//                 //                 style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Colors.white70,
+//                 //                 ),
+//                 //               ),
+//                 //               SizedBox(
+//                 //                 width: 10,
+//                 //               ),
+//                 //               Text(
+//                 //                 dateString1,
+//                 //                 style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Color.fromARGB(239, 62, 0, 231),
+//                 //                 ),
+//                 //               ),
+//                 //             ],
+//                 //           ),
+//                 //           Padding(
+//                 //             padding: const EdgeInsets.all(8.0),
+//                 //             child: Center(
+//                 //                 child: Text(
+//                 //               "Office details: ",
+//                 //               style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Colors.white70,
+//                 //                   fontSize: 15.0),
+//                 //             )),
+//                 //           ),
+//                 //           Row(
+//                 //             children: [
+//                 //               Text(
+//                 //                 "Officer name:",
+//                 //                 style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Colors.white70,
+//                 //                 ),
+//                 //               ),
+//                 //               SizedBox(
+//                 //                 width: 10,
+//                 //               ),
+//                 //               Text(
+//                 //                 e['officername'],
+//                 //                 style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Color.fromARGB(239, 62, 0, 231),
+//                 //                 ),
+//                 //               ),
+//                 //             ],
+//                 //           ),
+//                 //           Row(
+//                 //             children: [
+//                 //               Text(
+//                 //                 "Police station:",
+//                 //                 style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Colors.white70,
+//                 //                 ),
+//                 //               ),
+//                 //               SizedBox(
+//                 //                 width: 10,
+//                 //               ),
+//                 //               Text(
+//                 //                 e['station'],
+//                 //                 style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Color.fromARGB(239, 62, 0, 231),
+//                 //                 ),
+//                 //               ),
+//                 //             ],
+//                 //           ),
+//                 //           Row(
+//                 //             children: [
+//                 //               Text(
+//                 //                 "Status:",
+//                 //                 style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Colors.white70,
+//                 //                 ),
+//                 //               ),
+//                 //               SizedBox(
+//                 //                 width: 10,
+//                 //               ),
+//                 //               Text(
+//                 //                 e['mode'],
+//                 //                 style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Color.fromARGB(239, 62, 0, 231),
+//                 //                 ),
+//                 //               ),
+//                 //             ],
+//                 //           ),
+//                 //           TextButton(
+//                 //               onPressed: () {
+//                 //                 Navigator.push(
+//                 //                     context,
+//                 //                     MaterialPageRoute(
+//                 //                         builder: (context) => crediCardPage(
+//                 //                               officerID: e['oficeuid'],
+//                 //                               userId: uid,
+//                 //                               docId: e['docid'],
+//                 //                               did: e.id,
+//                 //                               email: email.toString(),
+//                 //                               date: dateString,
+//                 //                               amount: e['amount'],
+//                 //                               description: e['description'],
+//                 //                               type: e['type'],
+//                 //                               station: e['station'],
+//                 //                             )));
+//                 //               },
+//                 //               child: Text("Pay now"))
+//                 //         ],
+//                 //       ),
+//                 //     ),
+//                 //   );
+//                 // } else {
+//                 //   FirebaseFirestore.instance
+//                 //       .collection('Data')
+//                 //       .doc(uid)
+//                 //       .collection('fine')
+//                 //       .doc(e.id)
+//                 //       .update({
+//                 //     'status': 'expired',
+//                 //     // 'paybefore': dateTime1.add(const Duration(days: 7)),
+//                 //     // // 'amount': fineWithTax,
+//                 //   });
+//                 // }
+//                 // String fineWithTax = "";
+//                 // if (e['status'] == 1) {
+//                 //   var amount = int.parse(e['amount']);
+//                 //   var withTax = amount + 1000;
+//                 //   fineWithTax = withTax.toString();
+//                 //   FirebaseFirestore.instance
+//                 //       .collection('Data')
+//                 //       .doc(uid)
+//                 //       .collection('fine')
+//                 //       .doc(e.id)
+//                 //       .update({
+//                 //     // 'status': 1,
+//                 //     // 'paybefore': dateTime1.add(const Duration(days: 7)),
+//                 //     // 'amount': fineWithTax,
+//                 //     'updated': 'updated',
+//                 //   });
+//                 // }
+
+//                 // if (e['status'] == 1 && e['updated'] == "updated") {
+//                 //   FirebaseFirestore.instance
+//                 //       .collection('Data')
+//                 //       .doc(uid)
+//                 //       .collection('fine')
+//                 //       .doc(e.id)
+//                 //       .update({
+//                 //     // 'status': 1,
+//                 //     // 'paybefore': dateTime1.add(const Duration(days: 7)),
+//                 //     // 'amount': fineWithTax,
+//                 //     // 'updated': 'updated',
+//                 //   });
+//                 //   return Card(
+//                 //     color: Colors.yellow,
+//                 //     child: Padding(
+//                 //       padding: const EdgeInsets.all(8.0),
+//                 //       child: Column(
+//                 //         crossAxisAlignment: CrossAxisAlignment.start,
+//                 //         children: [
+//                 //           const Padding(
+//                 //             padding: EdgeInsets.all(8.0),
+//                 //             child: Center(
+//                 //                 child: Text(
+//                 //               "Fine details: ",
+//                 //               style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Colors.white70,
+//                 //                   fontSize: 15.0),
+//                 //             )),
+//                 //           ),
+//                 //           Text(
+//                 //             "14 Day Expired ",
+//                 //             style: TextStyle(
+//                 //                 fontWeight: FontWeight.bold,
+//                 //                 color: Colors.white70,
+//                 //                 fontSize: 15.0),
+//                 //           ),
+//                 //           Row(
+//                 //             children: [
+//                 //               const Text(
+//                 //                 "Fine description:",
+//                 //                 style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Colors.white70,
+//                 //                 ),
+//                 //               ),
+//                 //               SizedBox(
+//                 //                 width: 10,
+//                 //               ),
+//                 //               Text(
+//                 //                 e['description'],
+//                 //                 style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Color.fromARGB(239, 62, 0, 231),
+//                 //                 ),
+//                 //               ),
+//                 //             ],
+//                 //           ),
+//                 //           Row(
+//                 //             children: [
+//                 //               Text(
+//                 //                 "Fine amount:",
+//                 //                 style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Colors.white70,
+//                 //                 ),
+//                 //               ),
+//                 //               SizedBox(
+//                 //                 width: 10,
+//                 //               ),
+//                 //               // Text(
+//                 //               //   e['amount'],
+//                 //               //   style: TextStyle(
+//                 //               //     fontWeight: FontWeight.bold,
+//                 //               //     color: Color.fromARGB(239, 62, 0, 231),
+//                 //               //   ),
+//                 //               // ),
+//                 //             ],
+//                 //           ),
+//                 //           Row(
+//                 //             children: [
+//                 //               Text(
+//                 //                 "Fine Date:",
+//                 //                 style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Colors.white70,
+//                 //                 ),
+//                 //               ),
+//                 //               SizedBox(
+//                 //                 width: 10,
+//                 //               ),
+//                 //               Text(
+//                 //                 dateString,
+//                 //                 style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Color.fromARGB(239, 62, 0, 231),
+//                 //                 ),
+//                 //               ),
+//                 //             ],
+//                 //           ),
+//                 //           Row(
+//                 //             children: [
+//                 //               Text(
+//                 //                 "Pay before:",
+//                 //                 style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Colors.white70,
+//                 //                 ),
+//                 //               ),
+//                 //               SizedBox(
+//                 //                 width: 10,
+//                 //               ),
+//                 //               Text(
+//                 //                 dateString1,
+//                 //                 style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Color.fromARGB(239, 62, 0, 231),
+//                 //                 ),
+//                 //               ),
+//                 //             ],
+//                 //           ),
+//                 //           Padding(
+//                 //             padding: const EdgeInsets.all(8.0),
+//                 //             child: Center(
+//                 //                 child: Text(
+//                 //               "Office details: ",
+//                 //               style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Colors.white70,
+//                 //                   fontSize: 15.0),
+//                 //             )),
+//                 //           ),
+//                 //           Row(
+//                 //             children: [
+//                 //               Text(
+//                 //                 "Officer name:",
+//                 //                 style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Colors.white70,
+//                 //                 ),
+//                 //               ),
+//                 //               SizedBox(
+//                 //                 width: 10,
+//                 //               ),
+//                 //               Text(
+//                 //                 e['officername'],
+//                 //                 style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Color.fromARGB(239, 62, 0, 231),
+//                 //                 ),
+//                 //               ),
+//                 //             ],
+//                 //           ),
+//                 //           Row(
+//                 //             children: [
+//                 //               Text(
+//                 //                 "Police station:",
+//                 //                 style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Colors.white70,
+//                 //                 ),
+//                 //               ),
+//                 //               SizedBox(
+//                 //                 width: 10,
+//                 //               ),
+//                 //               Text(
+//                 //                 e['station'],
+//                 //                 style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Color.fromARGB(239, 62, 0, 231),
+//                 //                 ),
+//                 //               ),
+//                 //             ],
+//                 //           ),
+//                 //           Row(
+//                 //             children: [
+//                 //               Text(
+//                 //                 "Status:",
+//                 //                 style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Colors.white70,
+//                 //                 ),
+//                 //               ),
+//                 //               SizedBox(
+//                 //                 width: 10,
+//                 //               ),
+//                 //               Text(
+//                 //                 e['mode'],
+//                 //                 style: TextStyle(
+//                 //                   fontWeight: FontWeight.bold,
+//                 //                   color: Color.fromARGB(239, 62, 0, 231),
+//                 //                 ),
+//                 //               ),
+//                 //             ],
+//                 //           ),
+//                 //           TextButton(
+//                 //               onPressed: () {
+//                 //                 Navigator.push(
+//                 //                     context,
+//                 //                     MaterialPageRoute(
+//                 //                         builder: (context) => crediCardPage(
+//                 //                               officerID: e['oficeuid'],
+//                 //                               userId: uid,
+//                 //                               docId: e['docid'],
+//                 //                               did: e.id,
+//                 //                               email: email.toString(),
+//                 //                               date: dateString,
+//                 //                               amount: e['amount'],
+//                 //                               description: e['description'],
+//                 //                               type: e['type'],
+//                 //                               station: e['station'],
+//                 //                             )));
+//                 //               },
+//                 //               child: Text("Pay now"))
+//                 //         ],
+//                 //       ),
+//                 //     ),
+//                 //   );
+//                 // }
+//                 //  else {
+//                 //   return Card(
+//                 //     color: Colors.red,
+//                 //   );
+//                 // }
+//                 // var amount = int.parse(e['amount']);
+//                 // var withTax = amount + 0.0001;
+//                 // var fineWithTax = withTax.toString();
+//                 // FirebaseFirestore.instance
+//                 //     .collection('Data')
+//                 //     .doc(uid)
+//                 //     .collection('fine')
+//                 //     .doc(e.id)
+//                 //     .update({
+//                 //   'status': 1,
+//                 //   'paybefore': dateTime1.add(const Duration(days: 7)),
+//                 //   // 'amount': fineWithTax,
+//                 // });
+//                 // return Card(
+//                 //   color: Colors.yellow,
+//                 // );
+//               }).toList(),
+//             );
+//           }
+//         },
+//       ),
+//       //correct
+//       var ds = snapshot.data!.docs;
+//           List docids = [];
+
+//           final now = DateTime.now();
+//           for (int i = 0; i < ds.length; i++) {
+//             final expirationDate = ds[i]['expired'].toDate();
+//             final bool isExpired = expirationDate.isBefore(now);
+//             //updating status
+//             if (isExpired) {
+//               FirebaseFirestore.instance
+//                   .collection("Data")
+//                   .doc(uid)
+//                   .collection("fine")
+//                   .doc(ds[i].id)
+//                   .update({'status': "expired"});
+//             }
+//           }
+//           for (int i = 0; i < ds.length; i++) {
+//             final dateTime1 = ds[i]['expired'].toDate();
+//             String amount = "";
+//             int amountInInt = 0;
+//             if (ds[i]['status'] == "expired") {
+//               amount = ds[i]['amount'];
+//               amountInInt = int.parse(amount);
+//             }
+//             int FineWithTax = amountInInt + 1000;
+//             //updating status
+//             //dateTime1.add(const Duration(days: 7)),
+//             FirebaseFirestore.instance
+//                 .collection("Data")
+//                 .doc(uid)
+//                 .collection("fine")
+//                 .doc(ds[i].id)
+//                 .update({
+//               'status': "updated",
+//               'amount': FineWithTax.toString(),
+//               'expired': dateTime1.subtract(const Duration(hours: 3)),
+//             });
+//           }
+//           for (int i = 0; i < ds.length; i++) {
+//             return Text(ds[i]['amount']);
+//           }
+final Completer<GoogleMapController> _controller = Completer();
+  static const LatLng sourceLocation = LatLng(7.4721, 80.0446);
+  static const LatLng destinationLocation = LatLng(7.4818, 80.3609);
+  List<LatLng> polylineCoordinates = [];
+  Location? currentlocation;
+  void getCurrentLocation() {
+    Location location = Location();
+    location.getLocation().then((value) {
+      currentlocation = value;
+    });
+  }
+   void getCurrentLocation() {
+    Location location = Location();
+    location.getLocation().then((location) => currentLocation = location);
+  }
+
+  void getPolyPoints() async {
+    PolylinePoints polylinePoints = PolylinePoints();
+    PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
+        google_api_key,
+        PointLatLng(sourceLocation.latitude, sourceLocation.longitude),
+        PointLatLng(
+            destinationLocation.latitude, destinationLocation.longitude));
+    if (result.points.isNotEmpty) {
+      for (var point in result.points) {
+        polylineCoordinates.add(LatLng(point.latitude, point.longitude));
+      }
+    }
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    getPolyPoints();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: GoogleMap(
+        initialCameraPosition:
+            CameraPosition(target: sourceLocation, zoom: 10.0),
+        polylines: {
+          Polyline(
+              polylineId: PolylineId("route"),
+              points: polylineCoordinates,
+              color: Colors.blue,
+              width: 6),
+        },
+        markers: {
+          Marker(markerId: MarkerId("source"), position: sourceLocation),
+          Marker(
+              markerId: MarkerId("destination"), position: destinationLocation)
+        },
+      ),
