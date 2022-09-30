@@ -32,10 +32,10 @@ class _VideopalyerState extends State<Videopalyer> {
       initialVideoId: YoutubePlayer.convertUrlToId(url)!,
       flags: const YoutubePlayerFlags(
           enableCaption: true,
-          mute: true,
+          mute: false,
           loop: false,
           autoPlay: true,
-          hideControls: false),
+          hideControls: true),
     );
   }
 
@@ -58,6 +58,7 @@ class _VideopalyerState extends State<Videopalyer> {
   @override
   Widget build(BuildContext context) {
     return YoutubePlayerBuilder(
+      builder: (context, palyer) => Center(child: palyer),
       player: YoutubePlayer(
         controller: controller,
         // onEnded: (metaData) => print("End11111111111111"),
@@ -71,7 +72,6 @@ class _VideopalyerState extends State<Videopalyer> {
               ),
             )),
       ),
-      builder: (context, palyer) => Center(child: palyer),
     );
   }
 }

@@ -8,11 +8,9 @@ import 'package:police_offence_user/Drawer_Pages/contactus.dart';
 import 'package:police_offence_user/Bottom_Bar_Pages/home.dart';
 import 'package:police_offence_user/Drawer_Pages/report.dart';
 import 'package:police_offence_user/First_Screens/loginPage.dart';
-import 'package:police_offence_user/Map%20Test/mapScreen.dart';
 import 'package:police_offence_user/Bottom_Bar_Pages/profile.dart';
 import 'package:police_offence_user/Bottom_Bar_Pages/historyPage.dart';
 import 'package:police_offence_user/Sub_Pages/vediopayer.dart';
-import 'package:police_offence_user/Map%20Test/google_map.dart';
 import 'package:police_offence_user/Maps/location_controller.dart';
 import 'package:police_offence_user/Maps/mapscreen.dart';
 

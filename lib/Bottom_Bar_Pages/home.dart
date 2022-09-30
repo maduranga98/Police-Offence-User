@@ -7,7 +7,6 @@ import 'package:date_format/date_format.dart';
 import 'package:police_offence_user/Sub_Pages/creditcard.dart';
 import 'package:intl/intl.dart';
 import 'package:police_offence_user/Sub_Pages/vediopayer.dart';
-import 'package:police_offence_user/Map%20Test/testpage.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -68,26 +67,29 @@ class _HomeState extends State<Home> {
               ia.add(i);
             }
           }
-          print("IDS: ${ids[0]}");
-          print("Is: ${ia[0]}");
-          print("Value: ${ds[ia[0]]['count']}");
 
-          if (ds[ia[0]]['limit'] != "updated") {
-            FirebaseFirestore.instance
-                .collection("Data")
-                .doc(uid)
-                .collection("fine")
-                .doc(ids[0])
-                .update({'limit': "exceed"});
-          }
+          if (ia.isNotEmpty) {
+            print("IDS: ${ids[0]}");
+            print("Is: ${ia[0]}");
+            // print("Value: ${ds[ia[0]]['count']}");
 
-          for (int i = 1; i < ids.length; i++) {
-            FirebaseFirestore.instance
-                .collection("Data")
-                .doc(uid)
-                .collection("fine")
-                .doc(ids[i])
-                .update({'limit': "updated"});
+            if (ds[ia[0]]['limit'] != "updated") {
+              FirebaseFirestore.instance
+                  .collection("Data")
+                  .doc(uid)
+                  .collection("fine")
+                  .doc(ids[0])
+                  .update({'limit': "exceed"});
+            }
+
+            for (int i = 1; i < ids.length; i++) {
+              FirebaseFirestore.instance
+                  .collection("Data")
+                  .doc(uid)
+                  .collection("fine")
+                  .doc(ids[i])
+                  .update({'limit': "updated"});
+            }
           }
 
           return ListView(
@@ -130,16 +132,16 @@ class _HomeState extends State<Home> {
               final Timestamp timestamp2 = e['date'] as Timestamp;
               final DateTime dateTime2 = timestamp2.toDate();
               final dateString2 = DateFormat("dd, MMM").format(dateTime2);
-              // if (e['limit'] == "exceed") {
-              //   Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //           builder: (context) => Videopalyer(
-              //                 docId: e.id,
-              //                 Uid: uid,
-              //               )));
-              // }
-
+              if (e['limit'] == "exceed") {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Videopalyer(
+                              docId: e.id,
+                              Uid: uid,
+                            )));
+              }
+              print("here");
               return Stack(children: [
                 (e['limit'] == "exceed")
                     ? Container(
