@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, duplicate_import, implementation_imports, depend_on_referenced_packages, recursive_getters, unnecessary_null_comparison, prefer_interpolation_to_compose_strings, avoid_print
+
 import 'package:get/get.dart';
 import 'dart:convert';
 import 'dart:io';

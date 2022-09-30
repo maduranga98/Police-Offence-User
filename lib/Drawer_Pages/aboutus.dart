@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types, prefer_const_constructors, avoid_unnecessary_containers
+// ignore_for_file: camel_case_types, prefer_const_constructors, avoid_unnecessary_containers, unused_import
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 

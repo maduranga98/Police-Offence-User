@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unused_import, non_constant_identifier_names, avoid_print
+// ignore_for_file: prefer_const_constructors, unused_import, non_constant_identifier_names, avoid_print, sized_box_for_whitespace
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -132,15 +132,15 @@ class _HomeState extends State<Home> {
               final Timestamp timestamp2 = e['date'] as Timestamp;
               final DateTime dateTime2 = timestamp2.toDate();
               final dateString2 = DateFormat("dd, MMM").format(dateTime2);
-              if (e['limit'] == "exceed") {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Videopalyer(
-                              docId: e.id,
-                              Uid: uid,
-                            )));
-              }
+              // if (e['limit'] == "exceed") {
+              //   Navigator.push(
+              //       context,
+              //       MaterialPageRoute(
+              //           builder: (context) => Videopalyer(
+              //                 docId: e.id,
+              //                 Uid: uid,
+              //               )));
+              // }
               print("here");
               return Stack(children: [
                 (e['limit'] == "exceed")

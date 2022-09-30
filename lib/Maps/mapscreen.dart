@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:police_offence_user/Maps/location_search_dialog.dart';
@@ -16,6 +18,7 @@ class _MapScreen5State extends State<MapScreen5> {
   late CameraPosition _cameraPosition;
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     super.initState();
     _cameraPosition =
