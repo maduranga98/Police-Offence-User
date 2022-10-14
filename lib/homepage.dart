@@ -10,9 +10,8 @@ import 'package:police_offence_user/Drawer_Pages/report.dart';
 import 'package:police_offence_user/First_Screens/loginPage.dart';
 import 'package:police_offence_user/Bottom_Bar_Pages/profile.dart';
 import 'package:police_offence_user/Bottom_Bar_Pages/historyPage.dart';
+import 'package:police_offence_user/Maps/Map.dart';
 import 'package:police_offence_user/Sub_Pages/vediopayer.dart';
-import 'package:police_offence_user/Maps/location_controller.dart';
-import 'package:police_offence_user/Maps/mapscreen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -110,9 +109,9 @@ class _HomePageState extends State<HomePage> {
               onTap: () {
                 // Navigator.push(context,
                 //     MaterialPageRoute(builder: (context) => MapScreen5()));
-                Get.put(Locationcontroller());
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MapScreen5()));
+
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Maps()));
               },
             ),
             SizedBox(
